@@ -10,7 +10,7 @@ C=[...new Set(D.n.map(x=>x.c))],N=f=>D.n.filter(f).length,Q=k=>N(x=>x.i+x.o==k),
 T=(d,o)=>{let t=new Date(d+'T12:00');return isNaN(t)?d:t.toLocaleDateString('es-CL',o)},
 X='<button class=u data-x>Quitar filtros</button>';
 let s={m:'',c:'',q:''},P=(k,v)=>`data-${k}="${E(v)}" aria-pressed=${s[k]==v}`;
-document.body.style.setProperty('--a',K.map((k,j)=>`radial-gradient(circle at ${j%3*40+10}% ${(j/3|0)*25+5}%,${H[k]},#0000 ${Q(k)*9}%)`)+'');
+const DA=(K.map((k,j)=>`radial-gradient(circle at ${j%3*40+10}% ${(j/3|0)*25+5}%,${H[k]},#0000 ${Q(k)*9}%)`)+''),TA='radial-gradient(70% 55% at 12% 8%,color-mix(in srgb,var(--l) 45%,#0000),#0000),radial-gradient(55% 65% at 92% 28%,color-mix(in srgb,var(--w2) 60%,#0000),#0000),radial-gradient(60% 50% at 55% 100%,color-mix(in srgb,var(--g) 45%,#0000),#0000),radial-gradient(35% 35% at 40% 45%,color-mix(in srgb,var(--w1) 30%,#0000),#0000)';
 let L=(n,a,b)=>n+' '+(n==1?a:b),U={},TM=`Aurora E6E9E1 FFFFFF 1C1E19 B4D800 587300 B4D800 C3CDB8 0E100C 1A1D16 EEF1E8 B4D800 C6E33F 8FAA00 2F3A28
 Mutual ECEDEA FFFFFF 2F2F2E BED700 5A6E00 BED700 A7A7A2 1C1D1B 282927 F4F4F1 A3B800 CDE24A 9DB300 4A4A47
 Grafito EDEEF0 FFFFFF 1F2937 64748B 334155 94A3B8 CBD5E1 0F1115 1B1F29 E5E7EB 94A3B8 CBD5E1 475569 1E293B
@@ -31,7 +31,7 @@ Volcán FCEDE6 FFFFFF 3F1813 EF4444 B91C1C F87171 FBBF24 160808 251010 FFF7ED EF
 Real EEF0FD FFFFFF 1F2345 4F46E5 4338CA 818CF8 EAB308 0B0B22 121236 F8FAFC 6366F1 C7D2FE 4338CA A16207`.split('\n').map(x=>x.split(' ')),mq=matchMedia('(prefers-color-scheme:dark)');
 try{U=localStorage}catch(e){}
 let tn=U.radarTema||'Aurora',tm=U.radarModo||'auto';
-function A(){let t=TM.find(x=>x[0]==tn)||TM[0],dk=tm=='oscuro'||tm=='auto'&&mq.matches,h=document.documentElement,o=dk?7:0;h.classList.toggle('dark',dk);'bg pa k l g w1 w2'.split(' ').forEach((v,j)=>h.style.setProperty('--'+v,'#'+t[1+j+o]));
+function A(){let t=TM.find(x=>x[0]==tn)||TM[0],dk=tm=='oscuro'||tm=='auto'&&mq.matches,h=document.documentElement,o=dk?7:0;h.classList.toggle('dark',dk);document.body.style.setProperty('--a',t[0]=='Aurora'?DA:TA);'bg pa k l g w1 w2'.split(' ').forEach((v,j)=>h.style.setProperty('--'+v,'#'+t[1+j+o]));
 ap.innerHTML='<h2>Apariencia</h2><div class=sg>'+[['auto','Sistema'],['claro','Claro'],['oscuro','Oscuro']].map(([v,n])=>`<button data-mo=${v} aria-pressed=${tm==v}>${n}</button>`).join('')+'</div><div class=sw>'+TM.map(x=>`<button data-th=${x[0]} aria-pressed=${x[0]==t[0]}><i style="background:conic-gradient(#${x[4+o]} 0 30%,#${x[6+o]} 0 55%,#${x[1+o]} 0)"></i>${x[0]}</button>`).join('')+'</div>'}
 mq.addEventListener('change',A);A();
 lv.textContent='Edición '+T(D.f,{day:'numeric',month:'short'});
